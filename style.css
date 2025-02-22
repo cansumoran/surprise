@@ -22,6 +22,12 @@ input, button {
     margin-top: 10px;
 }
 
+#final-gif {
+    display: block; /* Ensures the image behaves as a block element */
+    margin: 20px auto; /* Centers it horizontally */
+    max-width: 100%; /* Ensures it stays responsive */
+}
+
 pre {
     white-space: pre-wrap;
     word-wrap: break-word;

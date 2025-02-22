@@ -1,11 +1,11 @@
 document.getElementById("unlock-btn").addEventListener("click", function () {
     let password = document.getElementById("password-input").value;
     if (!password) {
-        document.getElementById("error-message").textContent = "Please enter a password.";
+        document.getElementById("error-message").textContent = "Oops yanlış cevap! The liste'yi kontrol ediniz.";
         return;
     }
 
-    fetch("example.enc")
+    fetch("secret.enc")
     .then(response => response.text())
     .then(encryptedText => {
         encryptedText = encryptedText.trim();
@@ -16,7 +16,7 @@ document.getElementById("unlock-btn").addEventListener("click", function () {
             document.getElementById("content-screen").style.display = "block";
             typewriterEffect(decryptedText);
         } else {
-            document.getElementById("error-message").textContent = "Incorrect password or corrupted file.";
+            document.getElementById("error-message").textContent = "Oops yanlış cevap! The liste'yi kontrol ediniz.";
         }
     })
     .catch(error => {
@@ -25,6 +25,21 @@ document.getElementById("unlock-btn").addEventListener("click", function () {
     });
 });
 
+
+function decodeBase64UTF8(base64) {
+    try {
+        const binaryString = atob(base64);
+        const bytes = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+        }
+        const decoder = new TextDecoder('utf-8');
+        return decoder.decode(bytes);
+    } catch (error) {
+        console.error("Decoding Error:", error);
+        return null;
+    }
+}
 
 function decryptFile(encryptedText, password) {
     try {
@@ -40,7 +55,9 @@ function decryptFile(encryptedText, password) {
         }
         console.log("File decrypted successfully!");
 
-        const decodedText = atob(decryptedText.fileData.trim());
+        //const decodedText = atob(decryptedText.fileData.trim());
+
+        const decodedText = decodeBase64UTF8(decryptedText.base64Data.trim()); // Convert from Base64 back to UTF-8
 
         console.log(decodedText);
         return decodedText;
