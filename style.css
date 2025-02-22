@@ -1,0 +1,38 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+#password-screen {
+    margin-top: 20%;
+}
+
+input, button {
+    font-size: 18px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+#error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: left;
+    max-width: 80%;
+    margin: auto;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+img {
+    margin-top: 20px;
+    width: 300px;
+}
